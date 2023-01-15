@@ -20,12 +20,12 @@
  * 3. 인덱스 0부터 끝까지 배열을 탐색하며 각 값을 정수형으로 변환하고 결괏값에 더하여 누적합니다.
  */
 
- package datastructure.arrayandlist;
+package algorithm.datastructure.arrayandlist;
 
 import java.util.Scanner;
 
 public class SumNumbers {
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         int nNum = sc.nextInt();
@@ -37,6 +37,5 @@ public class SumNumbers {
         }
         System.out.println(sum);
 
-     }
- }
- 
+    }
+}
