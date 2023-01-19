@@ -1,4 +1,5 @@
-package baekjoon;
+package baekjoon.fileIOandOperations;
+
 
 import java.util.Scanner;
 
