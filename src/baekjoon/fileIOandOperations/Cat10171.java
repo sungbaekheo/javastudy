@@ -1,4 +1,4 @@
-package baekjoon;
+package baekjoon.fileIOandOperations;
 
 public class Cat10171 {
     public static void main(String[] args) {
