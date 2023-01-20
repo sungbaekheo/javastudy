@@ -1,6 +1,6 @@
-## Getting Started
+## Java Study
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Java 언어를 능숙하게 사용할 수 있도록 알고리즘을 공부하고 있습니다.
 
 ## Folder Structure
 
