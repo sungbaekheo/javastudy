@@ -14,14 +14,17 @@ public class BlackJack2798 {
             cardList[i] = sc.nextInt();
         }
 
-        int[] scoreTable = new int[nCard];
-
+        int maxPoint = 0;
         for(int i=0; i<nCard; i++){
-            for(int j=i; j>=0; j--){
-                
-                scoreTable[]
+            for(int j=i+1; j<nCard; j++){
+                for(int k=j+1; k<nCard; k++){
+                    int currentScore = cardList[i] + cardList[j] + cardList[k];
+                    if(currentScore > maxPoint && currentScore <= limit){
+                        maxPoint = currentScore;
+                    }
+                }
             }
         }
-
+        System.out.println(maxPoint);
     }
 }

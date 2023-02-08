@@ -20,7 +20,7 @@ public class Rectangle2527 {
             for(int i=0; i<8; i++){
                 squares[i] = Integer.parseInt(st.nextToken());
             }
-            if(squares[0] < squares[6] && squares[2] > squares[4]){
+            if(squares[0] > squares[6] || squares[2] < squares){
                 
             }
 
