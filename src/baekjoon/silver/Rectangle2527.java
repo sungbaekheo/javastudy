@@ -17,22 +17,24 @@ public class Rectangle2527 {
         for(int t=0; t<4; t++){
             int[] squares = new int[8];
             st = new StringTokenizer(br.readLine());
+            char type = '0';
             for(int i=0; i<8; i++){
                 squares[i] = Integer.parseInt(st.nextToken());
             }
-            if(squares[0] > squares[6] || squares[2] < squares){
-                
+            if((squares[2] < squares[4] || squares[3] < squares[5]) ||
+            (squares[6]<squares[0] || squares[1] > squares[7])) {
+                type = 'd';
+            } else if(squares[0] == squares[6] && squares[3] == squares[5] ||
+            squares[0] == squares[6] && squares[1] == squares[7] ||
+            squares[2] == squares[4] && squares[3] == squares[5] ||
+            squares[2] == squares[4] && squares[1] == squares[7]){
+                type = 'c';
+            } else if(squares[2] == squares[4]||squares[0] == squares[6]||squares[3] == squares[5]||squares[1] == squares[7]) {
+                type = 'b';
+            } else {
+                type = 'a';
             }
-
-
-
-
-
-
-
-
-
-
+            sb.append(type+"\n");
         }
         bw.write(sb.toString());
         bw.close();
