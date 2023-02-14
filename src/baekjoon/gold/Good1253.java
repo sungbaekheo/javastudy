@@ -13,26 +13,24 @@ public class Good1253 {
             numList[i] = sc.nextInt();
         }
         Arrays.sort(numList);
-        for(int i:numList){
-            System.out.print(i+" ");
-        }
-        System.out.println();
         int count = 0;
-        for(int i=2; i<len; i++){
+        for(int i=0; i<len; i++){
             int f = 0;
-            int p = 1;
-            while(true){
+            int p = len-1;
+            while(f < p){
                 if(numList[i] == numList[f]+numList[p]){
-                    count++;
-                    System.out.println(numList[i] + " " + f + " " + p);
-                    break;
-                } else if(numList[f]+numList[p]<numList[i] && p<i){
-                    p++;
-                } else if(numList[f]+numList[p]>numList[i] && f<p-1){
-                    f++;
-                    p = f+1;
+                    if(f != i && p != i){
+                        count++;
+                        break;
+                    } else if(f == i){
+                        f++;
+                    } else if(p == i){
+                        p--;
+                    }
+                } else if(numList[f]+numList[p]>numList[i]){
+                    p--;
                 } else{
-                    break;
+                    f++;
                 }
             }
         }
