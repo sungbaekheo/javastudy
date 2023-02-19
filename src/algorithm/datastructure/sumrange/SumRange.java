@@ -46,5 +46,4 @@ public class SumRange {
             System.out.println(numArray[end]-numArray[start-1]);
         }
     }
-    
 }
