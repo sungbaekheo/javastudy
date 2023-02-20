@@ -1,6 +1,5 @@
 package baekjoon.silver;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class SwitchOnAndOff1244 {
