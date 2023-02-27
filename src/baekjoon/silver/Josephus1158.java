@@ -8,31 +8,26 @@ public class Josephus1158 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
-        LinkedList<Integer> li = new LinkedList<>();
+        Queue<Integer> q = new LinkedList<>();
 
         int nPeople = sc.nextInt();
         int interval = sc.nextInt();
 
         for(int i=1; i<=nPeople; i++){
-            li.add(i);
+            q.offer(i);
         }
 
         sb.append("<");
-        int count = 1;
-        int idx = 0;
-        while(!li.isEmpty()){
-            idx = idx%li.size();
-            if(count == interval){
-                sb.append(li.remove(idx));
-                count = 1;
-                if(li.size() == 0){
-                    sb.append(">");
-                } else {
-                    sb.append(", ");
-                }
+        while(!q.isEmpty()){
+            for(int i=0; i<interval-1; i++){
+                q.offer(q.poll());
             }
-            count++;
-            idx++;
+            sb.append(q.poll());
+            if(q.size() != 0){
+                sb.append(", ");
+            } else {
+                sb.append(">");
+            }
         }
         System.out.println(sb.toString());
     }
