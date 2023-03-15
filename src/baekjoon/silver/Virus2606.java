@@ -2,8 +2,6 @@ package baekjoon.silver;
 
 import java.util.Scanner;
 
- // Compiler version JDK 11.0.2
-
 public class Virus2606{
     static int[][] graph;
     static boolean[] visited;
@@ -18,10 +16,10 @@ public class Virus2606{
         visited = new boolean[coms+1];
     
         for(int i=0; i<edge; i++){
-        int f = sc.nextInt();
-        int r = sc.nextInt();
+            int f = sc.nextInt();
+            int r = sc.nextInt();
             
-        graph[f][r] = graph[r][f] = 1;
+            graph[f][r] = graph[r][f] = 1;
         }
         
         DFS(1);
