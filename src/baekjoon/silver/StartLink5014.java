@@ -25,6 +25,7 @@ public class StartLink5014 {
      } 
 
      BFS(start, end, up, down); 
+     System.out.println(floors[end]);
    }
    
    static void BFS(int s, int e, int u, int d){
@@ -39,11 +40,12 @@ public class StartLink5014 {
        if(curr == e){
          return;
        }
-       if(e > curr || curr-d<1){
+       if(e > curr && curr-d>=1){
          q.add(curr+u);
-       } else if(e < curr || curr+u>total) {
+       } else if(e < curr && curr+u<=total) {
          q.add(curr-d);
        }
+       count++;
      }
    }
  }
