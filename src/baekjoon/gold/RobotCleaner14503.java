@@ -15,7 +15,7 @@ public class RobotCleaner14503 {
   static int[] dr = {-1, 0, 1, 0};
   static int[] dc = {0, 1, 0, -1};
   
-   public static void main(String args[]) throws IOException{ 
+  public static void main(String args[]) throws IOException{ 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
     
@@ -37,34 +37,34 @@ public class RobotCleaner14503 {
     
     DFS(cr, cc);
     System.out.println(cleaned);
-   }
-   
-   static void DFS(int cr, int cc){
-     if(room[cr][cc] == 0){
-       room[cr][cc] = 2;
-       cleaned++;
-     }
-     
-     boolean cleanable = false;
-     for(int d=0; d<4; d++){
-       int nr = cr + dr[d];
-       int nc = cc + dc[d];
-       if(room[nr][nc] == 0){
-         cleanable = true;
-         break;
-       }
-     }
-     
-     if(cleanable){
-       dir = (dir+3)%4;
-       int nr = cr + dr[dir];
-       int nc = cc + dc[dir];
-       if(room[nr][nc] == 0){
-        DFS(nr, nc);
-       } else {
-        DFS(cr, cc);
-       }
-     } else {
+  }
+  
+  static void DFS(int cr, int cc){
+    if(room[cr][cc] == 0){
+      room[cr][cc] = 2;
+      cleaned++;
+    }
+    
+    boolean cleanable = false;
+    for(int d=0; d<4; d++){
+      int nr = cr + dr[d];
+      int nc = cc + dc[d];
+      if(room[nr][nc] == 0){
+        cleanable = true;
+        break;
+      }
+    }
+    
+    if(cleanable){
+      dir = (dir+3)%4;
+      int nr = cr + dr[dir];
+      int nc = cc + dc[dir];
+      if(room[nr][nc] == 0){
+      DFS(nr, nc);
+      } else {
+      DFS(cr, cc);
+      }
+    } else {
       dir = (dir+2)%4;
       int nr = cr + dr[dir];
       int nc = cc + dc[dir];
@@ -73,6 +73,6 @@ public class RobotCleaner14503 {
       } else {
         DFS(nr, nc);
       }
-     }
-   }
- }
+    }
+  }
+}
