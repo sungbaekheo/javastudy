@@ -3,7 +3,6 @@ package baekjoon.gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class CastleDefense17135 {
@@ -36,66 +35,66 @@ public class CastleDefense17135 {
 
   public static void defense(int[] arrangement){
     int tempKilled = 0;
+    int[] line = new int[col];
     int[][] tempMap = new int[row+1][col];
     copyMap(tempMap);
     tempMap[row] = arrangement;
-    int[] line = new int[col];
 
     while(!isCleared(tempMap)){
-      for(int i=0; i<=row; i++){
-        System.out.println(Arrays.toString(tempMap[i]));
-      }
-      System.out.println("------------------");
+      int[][] targets = new int[3][2];
+      int a = -1;
       for(int i=0; i<col; i++){
         if(tempMap[row][i] != 2){
           continue;
         }
-        shoot: for(int r=row-1; r>0; r--){
-          System.out.println("row = " + r);
-          if(Math.abs(row-r)>d){
-            break;
-          }
-          System.out.println("row = " + r);
+        a++;
+        targets[a] = null;
+        int tDist = Integer.MAX_VALUE;
+        for(int r=row-1; r>0; r--){
           for(int c=0; c<col; c++){
-            if(Math.abs(row-r)+Math.abs(i-c)>d){
-              System.out.println(r+" "+c);
+            int dist = Math.abs(row-r)+Math.abs(i-c);
+            if(dist>d){
               continue;
             }
             if(tempMap[r][c] == 1){
-              System.out.println("죽인 좌표: "+r+" "+c);
-              tempKilled++;
-              tempMap[r][c] = 0;
-              break shoot;
+              if(dist<=tDist){
+                if(tDist > dist){
+                  tDist = dist;
+                  targets[a] = new int[] {r, c};
+                } else {
+                  if(targets[a][1] > c){
+                    targets[a] = new int[] {r, c};
+                  }
+                }
+              }
             }
           }
         }
-        for(int j=0; j<=row; j++){
-          System.out.println(Arrays.toString(tempMap[j]));
-        }
-        System.out.println("------------------");
       }
-      for(int i=row-1; i>0; i--){
-        System.out.println("it worked");
-        if(i == 0){
-          changeArray(tempMap[i], line);
+      for(int[] target : targets){
+        if(target == null){
+          continue;
         }
-        changeArray(tempMap[i], tempMap[i-1]);
+        if(tempMap[target[0]][target[1]] == 1){
+          tempMap[target[0]][target[1]] = 0;
+          tempKilled++;
+        }
       }
 
-      for(int i=0; i<=row; i++){
-        System.out.println(Arrays.toString(tempMap[i]));
+      for(int i=row-1; i>=0; i--){
+        if(i == 0){
+          changeArray(tempMap[i], line);
+        } else {
+          changeArray(tempMap[i], tempMap[i-1]);
+        }
       }
-      System.out.println("------------------");
     }
-    System.out.println(tempKilled);
     killed = Math.max(killed, tempKilled);
   }
 
   public static void arrange(int idx, int cnt){
     if(idx == col){
       if(cnt == 3){
-        System.out.println(Arrays.toString(arrangement));
-        System.out.println("------------------");
         defense(arrangement);
       }
       return;
