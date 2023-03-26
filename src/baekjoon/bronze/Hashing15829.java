@@ -19,4 +19,3 @@ public class Hashing15829 {
         System.out.println(a.mod(new BigInteger("1234567891")));
     }
 }
-    2   g 
