@@ -21,12 +21,12 @@ public class MakingBridges1010 {
   }
 
   public static int combination(int n, int m){
-    if(dp[n][m] > 0){
+    if(dp[n][m] > 0){ // 0이 아닐 경우 저장된 값 반환
       return dp[n][m];
     }
-    if(m == n || m == 0){
+    if(m == n || m == 0){ // 선택하지 않는 경우와 모두 선택하는 경우 1 반환
       return dp[n][m] = 1;
     }
-    return dp[n][m] = combination(n-1, m-1)+combination(n-1, m);
+    return dp[n][m] = combination(n-1, m-1)+combination(n-1, m); // nCr = (n-1)C(r-1)+(n-1)C(r)
   }
 }
