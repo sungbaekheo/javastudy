@@ -1,4 +1,4 @@
-package baekjoon.gold;
+package algorithm.datastructure.twopointer;
 
 import java.util.Arrays;
 import java.util.Scanner;

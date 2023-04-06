@@ -10,6 +10,7 @@ public class OrderOfJumong1940 {
         int n = sc.nextInt();
         int con = sc.nextInt();
         int[] materials = new int[n];
+        int answer = 0;
 
         for(int i=0; i<n; i++){
             materials[i] = sc.nextInt();
@@ -18,8 +19,23 @@ public class OrderOfJumong1940 {
         Arrays.sort(materials);
 
         int front = 0;
-        int rear = 1;
+        int rear = n-1;
 
+        while(front < rear){
+            int curr = materials[front] + materials[rear];
+            
+            if(curr == con){
+                answer++;
+                front++;
+                rear--;
+            } else if(curr < con){
+                front++;
+            } else {
+                rear--;
+            }
+        }
+
+        System.out.println(answer);
         
     }
 }
