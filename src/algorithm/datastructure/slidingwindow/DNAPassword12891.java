@@ -89,13 +89,13 @@ public class DNAPassword12891 {
             break;
         case 'G':
             if(myArr[2] == checkArr[2]){
-                checkSecret++;
+                checkSecret--;
             }
             myArr[2]--;
             break;
         case 'T':
             if(myArr[3] == checkArr[3]){
-                checkSecret++;
+                checkSecret--;
             }
             myArr[3]--;
             break;
