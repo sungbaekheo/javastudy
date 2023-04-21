@@ -3,6 +3,7 @@ package baekjoon.gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,14 +12,14 @@ public class PuyoPuyo11559 {
     static char[][] copiedMap = new char[12][6];
     static boolean[][] visited;
     static int popped;
-    static int chain;
+    static int chain = 0;
 
     static int[] dr = {-1, 1, 0, 0};
     static int[] dc = {0, 0, -1, 1};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
+
         for(int r=0; r<12; r++){
             map[r] = br.readLine().toCharArray();
         }
@@ -26,12 +27,12 @@ public class PuyoPuyo11559 {
         while(true){
             popped = 0;
 
-            copyMap(copiedMap);
+            copyMap();
+            visited = new boolean[12][6];
 
             for(int r=11; r>=0; r--){
                 for(int c=5; c>=0; c--){
-                    if(map[r][c] != '.' && !visited[r][c]){
-                        visited = new boolean[12][6];
+                    if(copiedMap[r][c] != '.' && !visited[r][c]){
                         BFS(new Position(r, c));
                     }
                 }
@@ -40,35 +41,49 @@ public class PuyoPuyo11559 {
             if(popped == 0){
                 break;
             } else {
-                gravity(copiedMap);
+                gravity();
             }
             chain++;
         }
+        System.out.println(chain);
     }
 
-    public static void gravity(char[][] copiedMap){
+    public static void gravity(){
         for(int c=0; c<6; c++){
             Queue<Character> gravity = new LinkedList<>();
             for(int r=11; r>=0; r--){
-                if(copiedMap)
+                if(copiedMap[r][c] != '.'){
+                    gravity.offer(copiedMap[r][c]);
+                }
+            }
+            for(int r=11; r>=0; r--){
+                if(!gravity.isEmpty()){
+                    map[r][c] = gravity.poll();
+                } else {
+                    map[r][c] = '.';
+                }
             }
         }
     }
 
-    public static void copyMap(char[][] copied){
+    public static void copyMap(){
         for(int r=0; r<12; r++){
             for(int c=0; c<6; c++){
-                copied[r][c] = map[r][c];
+                copiedMap[r][c] = map[r][c];
             }
         }
     }
 
     public static void BFS(Position start){
         Queue<Position> q = new LinkedList<>();
+        boolean[][] pVisited = new boolean[12][6];
         q.offer(start);
         visited[start.r][start.c] = true;
+        pVisited[start.r][start.c] = true;
         char color = map[start.r][start.c];
+
         int cnt = 0;
+
         while(!q.isEmpty()){
             Position curr = q.poll();
             cnt++;
@@ -80,14 +95,23 @@ public class PuyoPuyo11559 {
                     continue;
                 }
 
-                if(map[nr][nc] == color && !visited[nr][nc]){
+                if(copiedMap[nr][nc] == color && !visited[nr][nc]){
                     visited[nr][nc] = true;
+                    pVisited[nr][nc] = true;
                     q.offer(new Position(nr, nc));
                 }
             }
         }
         if(cnt>=4){
             popped++;
+            
+            for(int r=11; r>=0; r--){
+                for(int c=5; c>=0; c--){
+                    if(pVisited[r][c] && copiedMap[r][c] == color){
+                        copiedMap[r][c] = '.';
+                    }
+                }
+            }
         }
     }
 
