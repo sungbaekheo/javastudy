@@ -31,6 +31,7 @@ public class HideAndSeek2_12851 {
                     fastest = curr.sec;
                     cntWay++;
                 }
+
                 if(curr.p-1>=0 && (visited[curr.p-1] == 0 || visited[curr.p-1] == curr.sec+1)){
                     visited[curr.p-1] = curr.sec+1;
                     q.offer(new Position(curr.p-1, curr.sec+1));
